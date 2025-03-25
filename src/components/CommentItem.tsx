@@ -106,7 +106,7 @@ export const CommentItem = ({ comment, postId }: Props) => {
         <div>
           <button
             onClick={() => setIsCollapsed((prev) => !prev)}
-            title={isCollapsed ? "Hide Replies" : "Show Replies"}
+            title={isCollapsed ? "Show Replies" : "Hide Replies"}
           >
             {isCollapsed ? (
               <svg
