@@ -11,7 +11,7 @@ export const PostItem = ({ post }: Props) => {
     <div className="relative group">
       <div className="absolute -inset-1 rounded-[20px] bg-gradient-to-r from-[#6D4C41] to-[#AB886D] blur-sm opacity-0 group-hover:opacity-50 transition-colors duration-300 pointer-events-none"></div>
       <Link to={`/post/${post.id}`} className="block relative z-10">
-        <div className="w-80 h-76 bg-[#D7CCC8] border border-[rgb(84,90,106)] rounded-[20px] text-white flex flex-col p-5 overflow-hidden transition-colors duration-300 group-hover:bg-[#E4E0E1] shadow-2xl">
+        <div className="w-80 h-76 bg-white border border-[rgb(84,90,106)] rounded-[20px] text-white flex flex-col p-5 overflow-hidden transition-colors duration-300  shadow-2xl">
           {/* Header: Avatar and Title */}
           <div className="flex items-center space-x-2">
             {post.avatar_url ? (
