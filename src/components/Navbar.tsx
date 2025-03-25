@@ -1,11 +1,16 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router"
 import { useAuth } from "../context/AuthContext"
 
 export const Navbar = () => {
     const[menuOpen, setMenuOpen] = useState(false)
     const{signInWithGoogle,signOut,user}=useAuth()
+    console.log("User status:", user);
 
+    useEffect(() => {
+        console.log("User status changed:", user);
+    }, [user]);
+    
     return (
     <nav className="fixed top-0 w-full z-40 bg-[#6D4C41] backdrop-blur-lg border-b border-white/10 shadow-lg">
         <div className="max-w-5xl mx-auto px-4">
@@ -20,10 +25,12 @@ export const Navbar = () => {
                     className="text-white font-semibold px-4 py-2 rounded-md hover:text-[#6D4C41] hover:bg-amber-50 transition-all"
                     > Home 
                     </Link>
+                    {!!user &&(
                     <Link to="/create"  
                     className="text-white font-semibold px-4 py-2 rounded-md hover:text-[#6D4C41] hover:bg-amber-50 transition-all"> 
                     Tambah Resep 
                     </Link>
+                    )}
 
                 </div>
 
@@ -93,11 +100,13 @@ export const Navbar = () => {
                     className="block px-3 py-2 rounded-md text-base font-semibold text-white hover:text-[#6D4C41] hover:bg-amber-50 transition-all">
                         Home 
                     </Link>
+                    {!!user && (
                     <Link to="/create"
                     onClick={()=>setMenuOpen(false)}
                     className="block px-3 py-2 rounded-md text-base font-semibold text-white hover:text-[#6D4C41] hover:bg-amber-50 transition-all">
                         Tambah Resep 
                     </Link>
+                    )}
         
                     <Link to="" onClick={()=>setMenuOpen(false)}>
                         <div className="mt-5 justify-center items-center ml-2">

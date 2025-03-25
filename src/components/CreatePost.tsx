@@ -60,9 +60,9 @@ export const CreatePost = () => {
     return (
         <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-4">
             <div>
-                <label htmlFor="title" className="block mb-2 font-medium text-[#6D4C41]">Nama Resep</label>
+                <label htmlFor="title" className="block mb-2 font-semibold text-lg text-[#6D4C41]">Nama Resep</label>
                 <input
-                    className="w-full border border-[#6D4C41]/30 bg-transparent p-2 rounded text-[#6D4C41]"
+                    className="w-full bg-[#E4E0E1] outline-none hover:ring-2 hover:ring-[#6D4C41] focus:ring-2 focus:ring-[#6D4C41] p-2 rounded text-[#6D4C41]"
                     type="text"
                     id="title"
                     required
@@ -71,27 +71,27 @@ export const CreatePost = () => {
                 />
             </div>
             <div>
-                <label htmlFor="content" className="block mb-2 font-medium text-[#6D4C41]">Resep</label>
+                <label htmlFor="content" className="block mb-2 font-semibold text-lg text-[#6D4C41]">Resep</label>
                 <textarea
                     id="content"
-                    className="w-full border border-[#6D4C41]/30 bg-transparent p-2 rounded text-[#6D4C41]"
+                    className="w-full bg-[#E4E0E1] outline-none hover:ring-2 hover:ring-[#6D4C41] focus:ring-2 focus:ring-[#6D4C41] p-2 rounded text-[#6D4C41]"
                     required
                     rows={5}
                     value={content} // Mengikat nilai textarea ke state
                     onChange={(event) => setContent(event.target.value)}
                 />
-                <label htmlFor="file" className="block mb-2 font-medium text-[#6D4C41]">Tambah Gambar</label>
+                <label htmlFor="file" className="block mb-2 mt-2 font-semibold text-lg text-[#6D4C41]">Tambah Gambar</label>
                 <input
                     type="file"
                     id="image"
                     accept="image/*"
-                    className="w-full text-[#6D4C41]"
+                    className="w-full text-[#6D4C41] cursor-pointer"
                     required
                     onChange={handleFileChange}
                 />
             </div>
             <button type="submit" 
-            className="bg-[#9b4b2e] text-white px-4 py-2 rounded cursor-pointer hover:bg-[#ca7e65]"
+            className="bg-[#6D4C41] text-white font-semibold text-lg transition-all hover:text-[#] px-4 py-2 rounded cursor-pointer hover:bg-[#AB886D]"
             
             >
             {isPending ? "Menambahkan..." : "Tambahkan Resep"}
