@@ -98,16 +98,7 @@ export const Navbar = () => {
                     className="block px-3 py2 rounded-md text-base font-medium text-white hover:text-[#6D4C41] hover:bg-amber-50">
                         Tambah Resep 
                     </Link>
-                    <Link to="/category"
-                    onClick={()=>setMenuOpen(false)}
-                    className="block px-3 py2 rounded-md text-base font-medium text-white hover:text-[#6D4C41] hover:bg-amber-50">
-                        Kategori Resep 
-                    </Link>
-                    <Link to="/category/create"
-                    onClick={()=>setMenuOpen(false)}
-                    className="block px-3 py2 rounded-md text-base font-medium text-white hover:text-[#6D4C41] hover:bg-amber-50">
-                        Tambah Kategori Resep
-                    </Link>
+        
                     <Link to="" onClick={()=>setMenuOpen(false)}>
                         <div className="mt-5 justify-center items-center ml-2">
                             {user?(
