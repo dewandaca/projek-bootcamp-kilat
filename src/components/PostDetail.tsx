@@ -38,7 +38,7 @@ export const PostDetail = ({postId}:Props) =>
     const content = data?.content || '';
     return (
       <div className="space-y-6">
-      <h2 className="text-6xl font-bold mb-6 text-center bg-gradient-to-b from-[#6D4C41] to-[#FF8A65] bg-clip-text text-transparent">
+      <h2 className="text-6xl font-bold mb-6 text-center bg-gradient-to-b from-[#6D4C41] to-[#AB886D] bg-clip-text text-transparent">
         {data?.title}
       </h2>
       {data?.image_url && (
@@ -46,7 +46,7 @@ export const PostDetail = ({postId}:Props) =>
           <img
             src={data.image_url}
             alt={data?.title}
-            className="mt-4 rounded object-contain max-w-full w-full md:max-w-lg lg:max-w-xl"
+            className="mt-4 rounded-md object-contain max-w-full w-full md:max-w-lg lg:max-w-xl"
           />
         </div>
       )}

@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { Post } from "./PostList";
+import { FaCommentDots, FaHeart } from "react-icons/fa6";
 
 interface Props {
   post: Post;
@@ -8,9 +9,9 @@ interface Props {
 export const PostItem = ({ post }: Props) => {
   return (
     <div className="relative group">
-      <div className="absolute -inset-1 rounded-[20px] bg-gradient-to-r from-[#99340f] to-[#ffbea6] blur-sm opacity-0 group-hover:opacity-50 transition-colors duration-300 pointer-events-none"></div>
+      <div className="absolute -inset-1 rounded-[20px] bg-gradient-to-r from-[#6D4C41] to-[#AB886D] blur-sm opacity-0 group-hover:opacity-50 transition-colors duration-300 pointer-events-none"></div>
       <Link to={`/post/${post.id}`} className="block relative z-10">
-        <div className="w-80 h-76 bg-[#D7CCC8] border border-[rgb(84,90,106)] rounded-[20px] text-white flex flex-col p-5 overflow-hidden transition-colors duration-300 group-hover:bg-[#ffc7b3] shadow-2xl">
+        <div className="w-80 h-76 bg-[#D7CCC8] border border-[rgb(84,90,106)] rounded-[20px] text-white flex flex-col p-5 overflow-hidden transition-colors duration-300 group-hover:bg-[#E4E0E1] shadow-2xl">
           {/* Header: Avatar and Title */}
           <div className="flex items-center space-x-2">
             {post.avatar_url ? (
@@ -38,11 +39,11 @@ export const PostItem = ({ post }: Props) => {
             />
           </div>
           <div className="flex justify-around items-center">
-            <span className="cursor-pointer h-10 w-[50px] px-1 flex items-center justify-center font-extrabold rounded-lg">
-              ❤️ <span className="ml-2">{post.like_count ?? 0}</span>
+            <span className="cursor-pointer h-10 w-[50px] px-1 flex items-center justify-center font-extrabold rounded-lg text-[#6D4C41]">
+               <FaHeart className="text-[#6D4C41]"/> <span className="ml-2">{post.like_count ?? 0}</span>
             </span>
-            <span className="cursor-pointer h-10 w-[50px] px-1 flex items-center justify-center font-extrabold rounded-lg">
-              💬 <span className="ml-2">{post.comment_count ?? 0}</span>
+            <span className="cursor-pointer h-10 w-[50px] px-1 flex items-center justify-center font-extrabold rounded-lg text-[#6D4C41]">
+              <FaCommentDots className="text-[#6D4C41]"/> <span className="ml-2">{post.comment_count ?? 0}</span>
             </span>
           </div>
         </div>
