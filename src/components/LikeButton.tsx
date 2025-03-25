@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../supabase-client";
 import { useAuth } from "../context/AuthContext";
+import { FaThumbsDown, FaThumbsUp } from "react-icons/fa6";
 
 interface Props {
   postId: number;
@@ -98,19 +99,19 @@ export const LikeButton = ({ postId }: Props) => {
     <div className="flex items-center space-x-4 my-4">
       <button
         onClick={() => mutate(1)}
-        className={`px-3 py-1 cursor-pointer rounded transition-colors duration-150 ${
+        className={`px-3 py-1 cursor-pointer rounded transition-colors duration-150 flex items-center gap-2 ${
           userVote === 1 ? "bg-green-500 text-white" : "bg-gray-200 text-black"
         }`}
       >
-        👍 {likes}
+        <FaThumbsUp className="text-[#6D4C41]" /> {likes}
       </button>
       <button
         onClick={() => mutate(-1)}
-        className={`px-3 py-1 cursor-pointer rounded transition-colors duration-150 ${
+        className={`px-3 py-1 cursor-pointer rounded transition-colors duration-150 flex items-center gap-2 ${
           userVote === -1 ? "bg-red-500 text-white" : "bg-gray-200 text-black"
         }`}
       >
-        👎 {dislikes}
+        <FaThumbsDown className="text-[#6D4C41]" /> {dislikes}
       </button>
     </div>
   );

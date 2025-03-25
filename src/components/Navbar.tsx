@@ -11,17 +11,17 @@ export const Navbar = () => {
         <div className="max-w-5xl mx-auto px-4">
             <div className="flex justify-between items-center h-16">
                 <Link to="/" className="font-mono text-xl font-bold text-white">
-                ResepGroup8
+                RecipeGroup8
                 </Link>   
                 
                 {/* Dekstop Links */}
                 <div className="hidden md:flex items-center space-x-8">
                     <Link to="/" 
-                    className="text-white hover:text-[#D7CCC8] transition-colors"
+                    className="text-white font-semibold px-4 py-2 rounded-md hover:text-[#6D4C41] hover:bg-amber-50 transition-all"
                     > Home 
                     </Link>
                     <Link to="/create"  
-                    className="text-white hover:text-[#D7CCC8] transition-colors"> 
+                    className="text-white font-semibold px-4 py-2 rounded-md hover:text-[#6D4C41] hover:bg-amber-50 transition-all"> 
                     Tambah Resep 
                     </Link>
 
@@ -38,11 +38,11 @@ export const Navbar = () => {
                             className="w-8 h-8 rounded-full object-cover"/>
                         )}
                         <button onClick={signOut}
-                         className="bg-[#FF5252] px-3 py-1 rounded">SignOut</button>
+                         className="bg-[#AB886D] px-3 py-1 rounded cursor-pointer font-semibold text-white hover:bg-transparent hover:text-white transition-all hover:ring-[#AB886D] hover:ring-2">SignOut</button>
                     </div>
                 ):(
                     <button onClick={signInWithGoogle}
-                    className="bg-blue-400 px-3 py-1 rounded"
+                    className="text-white px-3 py-1 rounded cursor-pointer font-semibold bg-[#AB886D] hover:bg-transparent hover:text-white transition-all hover:ring-[#AB886D] hover:ring-2"
                     >Login with Google</button>
                 )}
             </div>
@@ -51,7 +51,7 @@ export const Navbar = () => {
                 <div className="md:hidden">
                     {" "}
                     <button onClick={() => setMenuOpen((prev)=>!prev)}
-                        className="text-white focus:outline-none"
+                        className="text-white focus:outline-none cursor-pointer"
                         aria-label="Toggle menu"
                     >
                     <svg
@@ -90,12 +90,12 @@ export const Navbar = () => {
                 <div className="px-2 pt-2 pb-3 space-y-1">
                     <Link to="/"
                     onClick={()=>setMenuOpen(false)}
-                    className="block px-3 py2 rounded-md text-base font-medium text-white hover:text-[#6D4C41] hover:bg-amber-50">
+                    className="block px-3 py-2 rounded-md text-base font-semibold text-white hover:text-[#6D4C41] hover:bg-amber-50 transition-all">
                         Home 
                     </Link>
                     <Link to="/create"
                     onClick={()=>setMenuOpen(false)}
-                    className="block px-3 py2 rounded-md text-base font-medium text-white hover:text-[#6D4C41] hover:bg-amber-50">
+                    className="block px-3 py-2 rounded-md text-base font-semibold text-white hover:text-[#6D4C41] hover:bg-amber-50 transition-all">
                         Tambah Resep 
                     </Link>
         
@@ -109,11 +109,11 @@ export const Navbar = () => {
                                 className="w-8 h-8 rounded-full object-cover"/>
                             )}
                             <button onClick={signOut}
-                            className="bg-[#FF5252] px-3 py-1 rounded">SignOut</button>
+                            className="bg-[#AB886D] px-3 py-1 rounded cursor-pointer font-semibold text-white hover:bg-transparent hover:text-white transition-all hover:ring-[#AB886D] hover:ring-2">SignOut</button>
                         </div>
                     ):(
                         <button onClick={signInWithGoogle}
-                        className="bg-blue-400 px-3 py-1 rounded"
+                        className="text-white px-3 py-1 rounded cursor-pointer font-semibold bg-[#AB886D] hover:bg-transparent hover:text-white transition-all hover:ring-[#AB886D] hover:ring-2"
                         >Login with Google</button>
                     )}
                 </div>
