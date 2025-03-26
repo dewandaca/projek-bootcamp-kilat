@@ -48,7 +48,7 @@ export const Navbar = () => {
                 )}
                 <button
                   onClick={signOut}
-                  className="bg-[#AB886D] text-xl px-3 py-1 rounded cursor-pointer font-semibold text-white transition-all duration-300 hover:bg-[#8F6A50] hover:ring-[#AB886D] hover:ring-2"
+                  className="bg-[#AB886D] text-xl px-4 py-1 rounded cursor-pointer font-semibold text-white transition-all duration-300 hover:bg-[#8F6A50] hover:ring-[#AB886D] hover:ring-2"
                 >
                   Sign Out
                 </button>

@@ -103,7 +103,7 @@ export const CommentItem = ({ comment, postId }: Props) => {
           <span className="text-lg text-gray-700">{new Date(comment.created_at).toLocaleString()}</span>
         </div>
         <p className="text-[#6D4C41] text-lg">{comment.content}</p>
-        <button onClick={handleReplyClick} className="text-black text-lg mt-1">
+        <button onClick={handleReplyClick} className="text-black text-lg mt-1 cursor-pointer">
           {showReply ? "Cancel" : "Reply"}
         </button>
       </div>
