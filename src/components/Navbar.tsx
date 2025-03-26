@@ -98,6 +98,23 @@ export const Navbar = () => {
                 Tambah Resep
               </Link>
             )}
+            <div className="mt-4">
+              {user ? (
+                <button
+                  onClick={signOut}
+                  className="bg-[#AB886D] text-xl px-4 py-2 rounded cursor-pointer font-semibold text-white transition-all duration-300 hover:bg-[#8F6A50] hover:ring-[#AB886D] hover:ring-2"
+                >
+                  Sign Out
+                </button>
+              ) : (
+                <button
+                  onClick={signInWithGoogle}
+                  className="text-white text-xl px-4 py-2 rounded cursor-pointer font-semibold bg-[#AB886D] transition-all duration-300 hover:bg-[#8F6A50] hover:ring-[#AB886D] hover:ring-2"
+                >
+                  Login with Google
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}
