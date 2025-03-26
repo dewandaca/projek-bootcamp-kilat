@@ -77,6 +77,30 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-[#6D4C41] absolute top-16 left-0 w-full py-2 shadow-md">
+          <div className="flex flex-col items-center space-y-3">
+            <Link
+              to="/"
+              onClick={() => setMenuOpen(false)}
+              className="text-white text-xl font-semibold px-4 py-2 rounded-md transition-colors duration-300 hover:text-[#6D4C41] hover:bg-amber-50"
+            >
+              Home
+            </Link>
+            {!!user && (
+              <Link
+                to="/create"
+                onClick={() => setMenuOpen(false)}
+                className="text-white text-xl font-semibold px-4 py-2 rounded-md transition-colors duration-300 hover:text-[#6D4C41] hover:bg-amber-50"
+              >
+                Tambah Resep
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
