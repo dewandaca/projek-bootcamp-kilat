@@ -3,7 +3,7 @@ import {Home }from "./pages/Home"
 import {Navbar }from "./components/Navbar"
 import { CreatePostPage } from "./pages/CreatePostPage"
 import { PostPage } from "./pages/PostPage"
-import { CreateCategory } from "./components/CreateCategory"
+
 
 
 function App() {
@@ -15,7 +15,6 @@ function App() {
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/create" element={<CreatePostPage />} />
-        <Route path="/category/create" element={<CreateCategory />} />
         <Route path="/post/:id" element={<PostPage />} />
         
         </Routes>
