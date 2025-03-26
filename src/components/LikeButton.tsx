@@ -99,8 +99,8 @@ export const LikeButton = ({ postId }: Props) => {
     if (!user) {
       Swal.fire({
         icon: "warning",
-        title: "Anda belum login",
-        text: "Silakan login untuk memberikan like atau dislike.",
+        title: "Anda Belum Sign In",
+        text: "Silakan sign in untuk memberikan like atau dislike.",
         confirmButtonText: "Sign In",
         confirmButtonColor: "#6D4C41",
         showCancelButton: true,

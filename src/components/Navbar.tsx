@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { useAuth } from "../context/AuthContext";
 import logo from "../assets/recipe.svg";
+import Swal from "sweetalert2";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,6 +12,25 @@ export const Navbar = () => {
   useEffect(() => {
     console.log("User status changed:", user);
   }, [user]);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      Swal.fire({
+        title: "Berhasil Sign Out!",
+        text: "Anda telah keluar dari akun.",
+        icon: "success",
+        confirmButtonColor: "#6D4C41",
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Oops!",
+        text: "Gagal melakukan sign out.",
+        icon: "error",
+        confirmButtonColor: "#d33",
+      });
+    }
+  };
 
   return (
     <nav className="fixed top-0 w-full py-2 z-40 bg-[#6D4C41] backdrop-blur-lg border-b border-white/10 shadow-lg px-4">
@@ -47,7 +67,7 @@ export const Navbar = () => {
                   <img src={user.user_metadata.avatar_url} alt="user profile" className="w-8 h-8 rounded-full object-cover" />
                 )}
                 <button
-                  onClick={signOut}
+                  onClick={handleSignOut}
                   className="bg-[#AB886D] text-xl px-4 py-1 rounded cursor-pointer font-semibold text-white transition-all duration-300 hover:bg-[#8F6A50] hover:ring-[#AB886D] hover:ring-2"
                 >
                   Sign Out
@@ -101,7 +121,7 @@ export const Navbar = () => {
             <div className="mt-4">
               {user ? (
                 <button
-                  onClick={signOut}
+                  onClick={handleSignOut}
                   className="bg-[#AB886D] mb-4 text-xl px-4 py-2 rounded cursor-pointer font-semibold text-white transition-all duration-300 hover:bg-[#8F6A50] hover:ring-[#AB886D] hover:ring-2"
                 >
                   Sign Out

@@ -62,8 +62,8 @@ export const CommentItem = ({ comment, postId }: Props) => {
     if (!user) {
       Swal.fire({
         icon: "warning",
-        title: "Anda belum login",
-        text: "Silakan login untuk membalas komentar.",
+        title: "Anda Belum Sign In",
+        text: "Silakan sign in untuk membalas komentar.",
         confirmButtonText: "Sign In",
         confirmButtonColor: "#6D4C41",
         showCancelButton: true,
