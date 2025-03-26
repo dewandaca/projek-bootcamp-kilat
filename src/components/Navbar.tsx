@@ -17,7 +17,7 @@ export const Navbar = () => {
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="inline-flex items-center space-x-3 font-mono text-2xl font-bold text-white">
-            <img src={logo} alt="Recipe Logo" className="w-8 h-8 object-contain" />
+            <img src={logo} alt="Recipe Logo" className="w-8 h-8 object-contain mt-2" />
             RecipeGroup8
           </Link>
 
