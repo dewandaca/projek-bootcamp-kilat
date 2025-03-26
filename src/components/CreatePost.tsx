@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { supabase } from "../supabase-client";
 import { useAuth } from "../context/AuthContext";
+import Swal from "sweetalert2";
 
 interface PostInput {
     title: string;
@@ -32,7 +33,7 @@ export const CreatePost = () => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const {user}=useAuth()
 
-    const { mutate,isError,isPending,error } = useMutation({
+    const { mutate, isError, isPending, error } = useMutation({
         mutationFn: (data: { post: PostInput, imageFile: File }) => {
             return createPost(data.post, data.imageFile);
         },
@@ -41,6 +42,14 @@ export const CreatePost = () => {
             setTitle('');
             setContent('');
             setSelectedFile(null);
+    
+            // SweetAlert sukses
+            Swal.fire({
+                title: "Berhasil Menambahkan Resep",
+                text: "Resep Anda telah ditambahkan.",
+                icon: "success",
+                confirmButtonColor: "#6D4C41", // Warna coklat
+            });
         }
     });
 

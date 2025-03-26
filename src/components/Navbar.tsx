@@ -17,7 +17,7 @@ export const Navbar = () => {
     try {
       await signOut();
       Swal.fire({
-        title: "Berhasil Sign Out!",
+        title: "Berhasil Sign Out",
         text: "Anda telah keluar dari akun.",
         icon: "success",
         confirmButtonColor: "#6D4C41",
