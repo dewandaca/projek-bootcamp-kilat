@@ -91,7 +91,7 @@ export const CreatePost = () => {
                 />
             </div>
             <button type="submit" 
-            className="bg-[#6D4C41] text-white font-semibold text-lg transition-all hover:text-[#] px-4 py-2 rounded cursor-pointer hover:bg-[#AB886D]"
+            className="bg-[#6D4C41] text-white font-semibold text-lg transition-all px-4 py-2 rounded cursor-pointer hover:bg-[#AB886D]"
             
             >
             {isPending ? "Menambahkan..." : "Tambahkan Resep"}

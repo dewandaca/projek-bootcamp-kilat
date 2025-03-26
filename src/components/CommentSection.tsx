@@ -191,13 +191,13 @@ export const CommentSection = ({ postId }: Props) => {
                     <textarea
                         value={newCommentText}
                         onChange={(e) => setNewCommentText(e.target.value)}
-                        className="w-full border border-[#6D4C41]/30 bg-transparent p-2 rounded text-[#6D4C41]"
+                        className="w-full border border-[#6D4C41]/30 bg-transparent p-2 text-xl rounded text-[#6D4C41]"
                         placeholder="Write a comment..."
                         rows={3}
                     />
                     <button
                         type="submit"
-                        className="mt-2 bg-[#ce5c36] text-white px-4 py-2 rounded cursor-pointer"
+                        className="mt-2 text-lg bg-[#6D4C41] hover:bg-[#AB886D] text-white px-4 py-2 rounded cursor-pointer"
                     >
                         {isPending ? "Posting..." : "Post Comment"}
                     </button>
