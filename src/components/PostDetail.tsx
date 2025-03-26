@@ -52,7 +52,7 @@ export const PostDetail = ({postId}:Props) =>
       )}
       
       <p className="text-[#6D4C41] text-xl font-semibold" dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br />') }} />
-      <p className="text-gray-500 text-sm">
+      <p className="text-gray-500 text-xl">
         Posted on:  {data?.created_at}
       </p>
     

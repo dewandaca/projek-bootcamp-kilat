@@ -1,7 +1,8 @@
+import Swal from "sweetalert2";
+import { FaThumbsDown, FaThumbsUp } from "react-icons/fa6";
+import { useAuth } from "../context/AuthContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../supabase-client";
-import { useAuth } from "../context/AuthContext";
-import { FaThumbsDown, FaThumbsUp } from "react-icons/fa6";
 
 interface Props {
   postId: number;
@@ -23,7 +24,6 @@ const vote = async (voteValue: number, postId: number, userId: string) => {
     .maybeSingle();
 
   if (existingVote) {
-    // Liked -> 0, Like -> -1
     if (existingVote.vote === voteValue) {
       const { error } = await supabase
         .from("votes")
@@ -43,6 +43,7 @@ const vote = async (voteValue: number, postId: number, userId: string) => {
     const { error } = await supabase
       .from("votes")
       .insert({ post_id: postId, user_id: userId, vote: voteValue });
+
     if (error) throw new Error(error.message);
   }
 };
@@ -58,8 +59,7 @@ const fetchVotes = async (postId: number): Promise<Vote[]> => {
 };
 
 export const LikeButton = ({ postId }: Props) => {
-  const { user } = useAuth();
-
+  const { user, signInWithGoogle } = useAuth(); // Ambil user dan fungsi login
   const queryClient = useQueryClient();
 
   const {
@@ -77,41 +77,62 @@ export const LikeButton = ({ postId }: Props) => {
       if (!user) throw new Error("Kamu harus login dulu nih");
       return vote(voteValue, postId, user.id);
     },
-
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["votes", postId] });
     },
   });
 
   if (isLoading) {
-    return <div> Loading votes...</div>;
+    return <div>Loading votes...</div>;
   }
 
   if (error) {
-    return <div> Error: {error.message}</div>;
+    return <div>Error: {error.message}</div>;
   }
 
   const likes = votes?.filter((v) => v.vote === 1).length || 0;
   const dislikes = votes?.filter((v) => v.vote === -1).length || 0;
   const userVote = votes?.find((v) => v.user_id === user?.id)?.vote;
 
+  // Handle Click Vote
+  const handleVote = (voteValue: number) => {
+    if (!user) {
+      Swal.fire({
+        icon: "warning",
+        title: "Anda belum login",
+        text: "Silakan login untuk memberikan like atau dislike.",
+        confirmButtonText: "Sign In",
+        confirmButtonColor: "#6D4C41",
+        showCancelButton: true,
+        cancelButtonText: "Batal",
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          signInWithGoogle(); // Panggil login Google saat tombol "Sign In" ditekan
+        }
+      });
+      return;
+    }
+    mutate(voteValue);
+  };
+
   return (
     <div className="flex items-center space-x-4 my-4">
       <button
-        onClick={() => mutate(1)}
-        className={`px-3 py-1 cursor-pointer rounded transition-colors duration-150 flex items-center gap-2 ${
+        onClick={() => handleVote(1)}
+        className={`text-xl px-3 py-1 cursor-pointer rounded transition-colors duration-150 flex items-center gap-2 ${
           userVote === 1 ? "bg-green-500 text-white" : "bg-gray-200 text-black"
         }`}
       >
-        <FaThumbsUp className="text-[#6D4C41]" /> {likes}
+        <FaThumbsUp className="text-[#6D4C41] text-xl" /> {likes}
       </button>
       <button
-        onClick={() => mutate(-1)}
-        className={`px-3 py-1 cursor-pointer rounded transition-colors duration-150 flex items-center gap-2 ${
+        onClick={() => handleVote(-1)}
+        className={`text-xl px-3 py-1 cursor-pointer rounded transition-colors duration-150 flex items-center gap-2 ${
           userVote === -1 ? "bg-red-500 text-white" : "bg-gray-200 text-black"
         }`}
       >
-        <FaThumbsDown className="text-[#6D4C41]" /> {dislikes}
+        <FaThumbsDown className="text-[#6D4C41] text-xl" /> {dislikes}
       </button>
     </div>
   );
