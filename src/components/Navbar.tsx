@@ -12,17 +12,17 @@ export const Navbar = () => {
     }, [user]);
     
     return (
-    <nav className="fixed top-0 w-full z-40 bg-[#6D4C41] backdrop-blur-lg border-b border-white/10 shadow-lg">
+    <nav className="fixed top-0 w-full py-2 z-40 bg-[#6D4C41] backdrop-blur-lg border-b border-white/10 shadow-lg">
         <div className="max-w-5xl mx-auto px-4">
             <div className="flex justify-between items-center h-16">
-                <Link to="/" className="font-mono text-xl font-bold text-white">
+                <Link to="/" className="font-mono text-2xl font-bold text-white">
                 RecipeGroup8
                 </Link>   
                 
                 {/* Dekstop Links */}
                 <div className="hidden md:flex items-center space-x-8">
                     <Link to="/" 
-                    className="text-white font-semibold px-4 py-2 rounded-md hover:text-[#6D4C41] hover:bg-amber-50 transition-all"
+                    className="text-white text-xl font-semibold px-4 py-2 rounded-md hover:text-[#6D4C41] hover:bg-amber-50 transition-all"
                     > Home 
                     </Link>
                     {!!user &&(
@@ -49,7 +49,7 @@ export const Navbar = () => {
                     </div>
                 ):(
                     <button onClick={signInWithGoogle}
-                    className="text-white px-3 py-1 rounded cursor-pointer font-semibold bg-[#AB886D] hover:bg-transparent hover:text-white transition-all hover:ring-[#AB886D] hover:ring-2"
+                    className="text-white text-xl px-4 py-2 rounded cursor-pointer font-semibold bg-[#AB886D] hover:bg-transparent hover:text-white transition-all hover:ring-[#AB886D] hover:ring-2"
                     >Login with Google</button>
                 )}
             </div>
@@ -97,13 +97,13 @@ export const Navbar = () => {
                 <div className="px-2 pt-2 pb-3 space-y-1">
                     <Link to="/"
                     onClick={()=>setMenuOpen(false)}
-                    className="block px-3 py-2 rounded-md text-base font-semibold text-white hover:text-[#6D4C41] hover:bg-amber-50 transition-all">
+                    className="block px-3 py-2 rounded-md text-lg font-semibold text-white hover:text-[#6D4C41] hover:bg-amber-50 transition-all">
                         Home 
                     </Link>
                     {!!user && (
                     <Link to="/create"
                     onClick={()=>setMenuOpen(false)}
-                    className="block px-3 py-2 rounded-md text-base font-semibold text-white hover:text-[#6D4C41] hover:bg-amber-50 transition-all">
+                    className="block px-3 py-2 rounded-md text-lg font-semibold text-white hover:text-[#6D4C41] hover:bg-amber-50 transition-all">
                         Tambah Resep 
                     </Link>
                     )}
@@ -122,7 +122,7 @@ export const Navbar = () => {
                         </div>
                     ):(
                         <button onClick={signInWithGoogle}
-                        className="text-white px-3 py-1 rounded cursor-pointer font-semibold bg-[#AB886D] hover:bg-transparent hover:text-white transition-all hover:ring-[#AB886D] hover:ring-2"
+                        className="text-white text-lg px-3 py-1 rounded cursor-pointer font-semibold bg-[#AB886D] hover:bg-transparent hover:text-white transition-all hover:ring-[#AB886D] hover:ring-2"
                         >Login with Google</button>
                     )}
                 </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
 import { Comment } from "./CommentSection";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../supabase-client";
@@ -38,18 +39,12 @@ export const CommentItem = ({ comment, postId }: Props) => {
   const [replyText, setReplyText] = useState<string>("");
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
-  const { user } = useAuth();
+  const { user, signInWithGoogle } = useAuth();
   const queryClient = useQueryClient();
 
   const { mutate, isPending, isError } = useMutation({
     mutationFn: (replyContent: string) =>
-      createReply(
-        replyContent,
-        postId,
-        comment.id,
-        user?.id,
-        user?.email
-      ),
+      createReply(replyContent, postId, comment.id, user?.id, user?.email),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["comments", postId] });
       setReplyText("");
@@ -63,26 +58,56 @@ export const CommentItem = ({ comment, postId }: Props) => {
     mutate(replyText);
   };
 
+  const handleReplyClick = () => {
+    if (!user) {
+      Swal.fire({
+        icon: "warning",
+        title: "Anda belum login",
+        text: "Silakan login untuk membalas komentar.",
+        confirmButtonText: "Sign In",
+        confirmButtonColor: "#6D4C41",
+        showCancelButton: true,
+        cancelButtonText: "Batal",
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          signInWithGoogle();
+        }
+      });
+      return;
+    }
+    setShowReply(true);
+  };
+
+  const handleCancelReply = () => {
+    Swal.fire({
+      icon: "question",
+      title: "Batalkan balasan?",
+      text: "Apakah Anda yakin ingin membatalkan balasan ini?",
+      showCancelButton: true,
+      confirmButtonText: "Ya, batalkan",
+      cancelButtonText: "Tidak",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setShowReply(false);
+        setReplyText("");
+      }
+    });
+  };
+
   return (
     <div className="pl-4 border-l border-[#6D4C41]/30">
       <div className="mb-2">
         <div className="flex items-center space-x-2">
-          {/* Display the commenter's username */}
-          <span className="text-sm font-bold text-[#6b6867]">
-            {comment.author}
-          </span>
-          <span className="text-xs text-gray-700">
-            {new Date(comment.created_at).toLocaleString()}
-          </span>
+          <span className="text-lg font-bold text-[#6b6867]">{comment.author}</span>
+          <span className="text-lg text-gray-700">{new Date(comment.created_at).toLocaleString()}</span>
         </div>
-        <p className="text-[#6D4C41]">{comment.content}</p>
-        <button
-          onClick={() => setShowReply((prev) => !prev)}
-          className="text-black text-sm mt-1"
-        >
+        <p className="text-[#6D4C41] text-lg">{comment.content}</p>
+        <button onClick={handleReplyClick} className="text-black text-lg mt-1">
           {showReply ? "Cancel" : "Reply"}
         </button>
       </div>
+
       {showReply && user && (
         <form onSubmit={handleReplySubmit} className="mb-2">
           <textarea
@@ -92,51 +117,28 @@ export const CommentItem = ({ comment, postId }: Props) => {
             placeholder="Write a reply..."
             rows={2}
           />
-          <button
-            type="submit"
-            className="mt-1 bg-[#ce5c36] text-white px-3 py-1 rounded"
-          >
-            {isPending ? "Posting..." : "Post Reply"}
-          </button>
+          <div className="mt-1 flex space-x-2">
+            <button type="submit" className="bg-[#ce5c36] text-white px-3 py-1 rounded">
+              {isPending ? "Posting..." : "Post Reply"}
+            </button>
+            <button type="button" onClick={handleCancelReply} className="bg-gray-400 text-white px-3 py-1 rounded">
+              Cancel
+            </button>
+          </div>
           {isError && <p className="text-red-500">Error posting reply.</p>}
         </form>
       )}
 
       {comment.children && comment.children.length > 0 && (
         <div>
-          <button
-            onClick={() => setIsCollapsed((prev) => !prev)}
-            title={isCollapsed ? "Hide Replies" : "Show Replies"}
-          >
+          <button onClick={() => setIsCollapsed((prev) => !prev)} title={isCollapsed ? "Hide Replies" : "Show Replies"}>
             {isCollapsed ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-4 h-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 9l-7 7-7-7"
-                />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-4 h-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 15l7-7 7 7"
-                />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
               </svg>
             )}
           </button>
