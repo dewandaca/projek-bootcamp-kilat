@@ -184,7 +184,7 @@ export const CommentSection = ({ postId }: Props) => {
 
     return (
         <div>
-            <h3 className="text-[#6D4C41]">Comments</h3>
+            <h3 className="text-[#6D4C41] text-xl">Comments</h3>
             {/* Create comments */}
             {user ? (
                 <form onSubmit={handleSubmit} className="mb-4">
@@ -206,7 +206,7 @@ export const CommentSection = ({ postId }: Props) => {
                     )}
                 </form>
             ) : (
-                <p className="mb-4 text-gray-600">
+                <p className="mb-4 text-gray-600 text-xl">
                     You must be logged in to post a comment.
                 </p>
             )}
