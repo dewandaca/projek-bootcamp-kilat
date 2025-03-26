@@ -38,12 +38,12 @@ export const PostItem = ({ post }: Props) => {
               className="w-full rounded-[20px] object-cover max-h-[150px] mx-auto transition-transform duration-300 hover:scale-105"
             />
           </div>
-          <div className="flex justify-around items-center pb-4">
-            <span className="cursor-pointer h-10 w-[50px] px-1 flex items-center justify-center font-extrabold rounded-lg text-[#6D4C41] transition-transform duration-300 hover:scale-110">
-              <FaHeart className="text-[#6D4C41]" /> <span className="ml-2">{post.like_count ?? 0}</span>
+          <div className="flex justify-around items-center pt-3">
+            <span className="cursor-pointer text-lg h-10 w-[50px] px-1 flex items-center justify-center font-extrabold rounded-lg text-[#6D4C41] transition-transform duration-300 hover:scale-110">
+              <FaHeart className="text-[#6D4C41] text-lg" /> <span className="ml-2">{post.like_count ?? 0}</span>
             </span>
-            <span className="cursor-pointer h-10 w-[50px] px-1 flex items-center justify-center font-extrabold rounded-lg text-[#6D4C41] transition-transform duration-300 hover:scale-110">
-              <FaCommentDots className="text-[#6D4C41]" /> <span className="ml-2">{post.comment_count ?? 0}</span>
+            <span className="cursor-pointer text-lg h-10 w-[50px] px-1 flex items-center justify-center font-extrabold rounded-lg text-[#6D4C41] transition-transform duration-300 hover:scale-110">
+              <FaCommentDots className="text-[#6D4C41] text-lg" /> <span className="ml-2">{post.comment_count ?? 0}</span>
             </span>
           </div>
         </div>
